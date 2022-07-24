@@ -4,4 +4,5 @@
     echo str_word_count($texto) ."<br/>";
     echo strrev($texto) ."<br/>";
     echo strpos($texto, "rei") ."<br/>";
+    echo str_replace("rato","gato",$texto)
 ?>
