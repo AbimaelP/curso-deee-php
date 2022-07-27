@@ -52,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $valor = htmlspecialchars($valor);
     return $valor;
   }
+  function digitaValue($n){
+    if(isset($_POST[$n])){
+      echo "value='$_POST[$n]'";
+    }
+  }
+  function checaSeValido($n){
+    if(!empty($n)){echo "class='invalido'";}
+  }
+  if (empty($erroNome) && empty($erroEmail) && empty($erroSenha) && empty($erroRepeteSenha)){
+    header('Location: obrigado.php');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -71,22 +82,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         <!-- NOME COMPLETO -->
         <label> Nome Completo </label>
-        <input type="text" name="nome" placeholder="Digite seu nome" required>
+        <input type="text" name="nome" <?php checaSeValido($erroNome)?><?php digitaValue('nome')?> placeholder="Digite seu nome" required>
         <br><span class="erro"><?php echo $erroNome;?></span>
 
         <!-- EMAIL -->
         <label> E-mail </label>
-        <input type="email" name="email" placeholder="email@provedor.com" required>
+        <input type="email" name="email" <?php checaSeValido($erroEmail)?><?php digitaValue('email')?> placeholder="email@provedor.com" required>
         <br><span class="erro"><?php echo $erroEmail;?></span>
 
         <!-- SENHA -->
         <label> Senha </label>
-        <input type="password" name="senha" placeholder="Digite uma senha" required>
+        <input type="password" name="senha" <?php checaSeValido($erroSenha)?><?php checaSeValido($erroSenha)?><?php digitaValue('senha')?> placeholder="Digite uma senha" required>
         <br><span class="erro"><?php echo $erroSenha;?></span>
 
         <!-- REPETE SENHA -->
         <label> Repete Senha </label>
-        <input type="password" name="repete_senha" placeholder="Repita a senha" required>
+        <input type="password" name="repete_senha" <?php checaSeValido($erroRepeteSenha)?> placeholder="Repita a senha" required>
         <br><span class="erro"><?php echo $erroRepeteSenha;?></span>
 
         <button type="submit"> Enviar Formulário </button>
